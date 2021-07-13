@@ -1,0 +1,193 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<title>ABCs</title>
+<link rel="stylesheet" href="../../gi/_font/StarfallvBP/StarfallvBP.css">
+<script>
+var indexLinkHelp = "http://help.starfall.com/";
+</script>
+<script src="../_js/jquery/jquery-3.2.1.min6289.js?ds=20200601"></script>
+<script src="../_js/createjs/createjs-2015.11.26.min6289.js?ds=20200601"></script>
+<script src="../_js/vikram/index-optionalbar.js"></script>
+<script src="../_js/vikram/index-logos.js"></script>
+<script src='../_js/vikram/index-backbutton.js'></script>
+<script src='../_js/vikram/resize.js'></script>
+<script src="../_js/vikram/backbutton-fix.js"></script>
+<script src="index.js"></script>
+<script src="index-controller.js"></script>
+<style>
+	#rotate_icon_container{
+		text-align: center;
+		background-color: #edd3f6;
+		position: relative;
+		display: none;
+	}
+	#rotate_icon{
+		position: absolute;
+	}
+	#navigation{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 150px;
+	}
+	#back{
+		width: 100%;
+	}
+	body > img[style="visibility: hidden;"]{ display: none; }
+</style>
+<script>
+var SpecialDefinitions = {
+	buttons : [
+		{id:"btn_a",link:"mp3/a.mp3"},
+		{id:"btn_b",link:"mp3/b.mp3"},
+		{id:"btn_c",link:"mp3/c.mp3"},
+		{id:"btn_d",link:"mp3/d.mp3"},
+		{id:"btn_e",link:"mp3/e.mp3"},
+		{id:"btn_f",link:"mp3/f.mp3"},
+		{id:"btn_g",link:"mp3/g.mp3"},
+		{id:"btn_h",link:"mp3/h.mp3"},
+		{id:"btn_i",link:"mp3/i.mp3"},
+		{id:"btn_j",link:"mp3/j.mp3"},
+		{id:"btn_k",link:"mp3/k.mp3"},
+		{id:"btn_l",link:"mp3/l.mp3"},
+		{id:"btn_m",link:"mp3/m.mp3"},
+		{id:"btn_n",link:"mp3/n.mp3"},
+		{id:"btn_o",link:"mp3/o.mp3"},
+		{id:"btn_p",link:"mp3/p.mp3"},
+		{id:"btn_q",link:"mp3/q.mp3"},
+		{id:"btn_r",link:"mp3/r.mp3"},
+		{id:"btn_s",link:"mp3/s.mp3"},
+		{id:"btn_t",link:"mp3/t.mp3"},
+		{id:"btn_u",link:"mp3/u.mp3"},
+		{id:"btn_v",link:"mp3/v.mp3"},
+		{id:"btn_w",link:"mp3/w.mp3"},
+		{id:"btn_x",link:"mp3/x.mp3"},
+		{id:"btn_y",link:"mp3/y.mp3"},
+		{id:"btn_z",link:"mp3/z.mp3"},
+		// {id:"btn_fairies",link:"/h/abcs/song/"},
+		{id:"btn_colors",link:"/h/colors.mp3sn=abcs"},
+		{id:"btn_mathsongs",link:"/h/mathsongs.mp3sn=abcs"},
+		{id:"btn_song_fairies",link:"/h/abcs/song.mp3"},
+		{id:"btn_song_abcs",link:"/h/abcs/vfs224126198.mp3"},
+		{id:"btn_sign_abcs",link:"/h/abcs/sign-abcs.mp3"},
+		{id:"btn_song_sa",link:"/h/abcs/vfs224132994.mp3"},
+		{id:"btn_song_se",link:"/h/abcs/vfs224133137.mp3"},
+		{id:"btn_song_si",link:"/h/abcs/vfs224133580.mp3"},
+		{id:"btn_song_so",link:"/h/abcs/vfs224136143.mp3"},
+		{id:"btn_song_su",link:"/h/abcs/vfs224136459.mp3"}
+	]
+}
+var OptionalBarOn = 0;
+var stateStandardsOn = 0;
+var stateStandardsColor = "#197BF6";
+var stateStandardsLink = indexLinkHelp;
+var starfallLogoPath = "../_images/starfall-logo.png";
+////////////////////////////////////////////////////////////////////
+// Do not change the code below
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+var OptionalBarHeight = 40;
+var stageWidth = 1024, stageHeight = 768, maxStageWidth = 1730, maxStageHeight = 768;
+
+function init() {
+	starfall.BackButton.init(stageWidth,"https://www.starfall.com/h/_images/");
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("2BC52F8EEF46534C81394A2A6963D330");
+	// var lib=comp.getLibrary();
+	// var loader = new createjs.LoadQueue(false);
+	// loader.installPlugin(createjs.Sound);
+	// loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	// loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	// var lib=comp.getLibrary();
+	// loader.loadManifest(lib.properties.manifest);
+	handleComplete(null, comp);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	toggleLoader(false);
+	var lib=comp.getLibrary();
+	// var ss=comp.getSpriteSheet();
+	// var queue = evt.target;
+	// var ssMetadata = lib.ssMetadata;
+	// for(i=0; i<ssMetadata.length; i++) {
+	// 	ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	// }
+	exportRoot = new lib.indexabc();
+	stage = new lib.Stage(canvas);
+	starfall.Resize.setup(stage,stageWidth,stageHeight,maxStageWidth,maxStageHeight);
+	var controller = new starfall.ABCIndexController(exportRoot);
+	stage.addChild(exportRoot);
+
+	if(OptionalBarOn){
+        addOptionalbar();	
+    }
+	addLogos();
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		createjs.Ticker.setFPS(lib.properties.fps);
+		//createjs.Ticker.addEventListener("tick", stage);
+	}
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+function playSound(id, loop) {
+	return createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+function toggleLoader(show){
+	if(show){
+		dom_overlay_container.style.display = "block";
+		canvas.style.display = "none";
+	}
+	else{
+		dom_overlay_container.style.display = "none";
+		canvas.style.display = "block";
+	}
+}
+function addOptionalbar(){
+	var optionalBar = new starfall.OptionalBar(stageWidth);
+	stage.addChild(optionalBar);
+	starfall.Resize.events.addEventListener("resize",function(){
+		optionalBar.resize();
+	});
+	exportRoot.y = OptionalBarHeight;
+	var remainingHeight = stageHeight-OptionalBarHeight;
+	exportRoot.scaleX = exportRoot.scaleY = remainingHeight/stageHeight;
+	exportRoot.x = (stageWidth - (stageWidth*exportRoot.scaleX))/2;
+}
+function addLogos(){
+	var logo = new starfall.IndexLogos(exportRoot,stageWidth,stageHeight,stateStandardsColor,stateStandardsLink,stateStandardsOn,starfallLogoPath);
+	exportRoot.addChild(logo);
+}
+</script>
+<!-- write your code here -->
+</head>
+<body bgcolor="#edd3f6" onload="init();" style="margin:0px;">
+	<div style="font-family: 'VAGzStarBold';opacity:0;position:fixed">.</div>
+	<div id="animation_container">
+		<canvas id="canvas" width="1024" height="768" style="position: absolute; display: block; background-color:#edd3f6; -webkit-tap-highlight-color: transparent;"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; position: absolute; left: 0px; top: 0px; display: block; width:100%; height:100%">
+			<div id='_preload_div_' style='background:#edd3f6; display: inline-block; height:100%; width: 100%; vertical-align:middle;position:absolute;left:0px;top:0px;text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src="../_images/web-system-wide-loading-stars-GIF539b.gif?1498454704922" style='vertical-align: middle; max-width: 100%; max-height: 100%'/></div>
+		</div>
+	</div>
+	<div id="rotate_icon_container">
+		<img id="rotate_icon" src="../_images/rotate-phone-icon-white.png" />
+	</div>
+	<div id="navigation">
+		<a href="https://www.starfall.com/h/index.php?mg=m"><img src="#" id="back"></a>
+	</div>
+</body>
+
+<!-- Mirrored from www.starfall.com/h/abcs/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 28 Jun 2021 16:10:51 GMT -->
+</html>
